@@ -43,7 +43,29 @@ public class MyJavaFX extends javafx.application.Application {
         pane.add(allButtons[3], 2, 2);
         pane.add(allButtons[4], 1, 1);
 
-        ButtonResponder br = new ButtonResponder();        
+        // Regular inner class       
+        //ButtonResponder br = new ButtonResponder();        
+        
+        // Anonymous inner class
+        /*
+        EventHandler<ActionEvent> br = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Object obj = event.getSource();
+                if(obj instanceof Button b) {
+                    String t = b.getText();
+                    System.out.println("BUTTON: " + t);
+                }
+            }
+        };*/
+
+        EventHandler<ActionEvent> br = event -> {
+            Object obj = event.getSource();
+            if(obj instanceof Button b) {
+                String t = b.getText();
+                System.out.println("BUTTON: " + t);
+            }
+        };
+        
         for(Button b: allButtons) {
             b.setOnAction(br);
         }
